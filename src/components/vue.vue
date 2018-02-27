@@ -7,7 +7,7 @@
       v-model="task.content"
       placeholder="将编写任务"
     >
-    <div class="list">
+    <transition name="list">
       <div class="unit"
            v-for="(item,index) in list">
         <input @click="changeState(index)"
@@ -21,10 +21,11 @@
           删除
         </button>
       </div>
-    </div>
+    </transition>
     <p v-if="list.length === 0" class="empty">
       暂无任务
     </p>
+
   </div>
 </template>
 
@@ -81,6 +82,7 @@
   .list {
     margin: 0 auto;
     width: 80%;
+    background: #ccc;
   }
 
   .unit {
