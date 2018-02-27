@@ -5,7 +5,7 @@
       class="edit"
       type="text"
       v-model="task.content"
-      placeholder="编写任务"
+      placeholder="将编写任务"
     >
     <div class="list">
       <div class="unit"
