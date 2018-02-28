@@ -7,9 +7,9 @@
       v-model="task.content"
       placeholder="将编写任务"
     >
-    <transition name="list">
+    <transition-group name="list" tag='div'>
       <div class="unit"
-           v-for="(item,index) in list">
+           v-for="(item,index) in list" :key="index">
         <input @click="changeState(index)"
                :checked="item.finished"
                type="checkbox">
@@ -21,7 +21,7 @@
           删除
         </button>
       </div>
-    </transition>
+    </transition-group>
     <p v-if="list.length === 0" class="empty">
       暂无任务
     </p>
@@ -59,6 +59,7 @@
       },
       removeTask: function (index) { //删除
         //使用splice操作删除数组指定项
+        console.log(index);
         this.list.splice(index, 1);
       }
     }
@@ -119,4 +120,20 @@
     text-align: center;
     padding: 10px 0;
   }
+  .list-item {
+  display: inline-block;
+  margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+  transition: all 1s;
+}
+.list-enter
+/* .list-leave-active for below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.list-leave-to{
+  opacity: 0;
+  transform: translateX(-100px);
+}
 </style>
