@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import vue from '@/components/vue'
-import abc from '@/components/transition'
+import transitioner from '@/components/transition'
+import counter from '@/components/counter/couter'
 Vue.use(Router)
 
 export default new Router({
@@ -12,9 +13,19 @@ export default new Router({
       component: vue
     },
     {
-      path: '/abc',
-      name: 'abc',
-      component: abc
+      path: '/transitioner',
+      name: 'transitioner',
+      component: transitioner
+    },
+    {
+      path: '/vue',
+      name: 'vue',
+      component: vue
+    },
+    {
+      path: '/counter',
+      name: 'counter',
+      component: counter
     }
   ]
 })

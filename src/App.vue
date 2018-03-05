@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <div>
+      <router-link to='/vue'>列表</router-link>
+      <router-link to='/transitioner'>过渡动画</router-link>
+      <router-link to='/counter'>vuex的计数</router-link>
+    </div>
     <router-view/>
   </div>
 </template>
