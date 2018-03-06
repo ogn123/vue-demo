@@ -12,7 +12,8 @@ const state = {
 // mutations must be synchronous and can be recorded by plugins
 // for debugging purposes.
 const mutations = {
-  increment (state) {
+  increment (state,aa) {
+    console.log(aa)
     state.count++
     state.history.push('increment')
   },
@@ -25,7 +26,7 @@ const mutations = {
 // actions are functions that cause side effects and can involve
 // asynchronous operations.
 const actions = {
-  increment: ({ commit }) => commit('increment'),
+  increment: ({ commit },abc) => commit('increment',{id:abc}),
   decrement: ({ commit }) => commit('decrement'),
   incrementIfOdd ({ commit, state }) {
     if ((state.count + 1) % 2 === 0) {

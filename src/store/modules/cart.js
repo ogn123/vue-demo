@@ -34,10 +34,10 @@ const getters = {
     //购物车的列表
     cartProducts:state=>{
         return state.added.map(({id,num})=>{
-            let product = state.shop_list.find(n=>n.id == id)
+            let product1 = state.shop_list.find(n=>n.id == id)
             // console.log('product',product)
             return {
-                ...product,
+                ...product1,
                 num
             }
             
@@ -46,7 +46,7 @@ const getters = {
     },
     // 总价
     totalPrice:(state,getters) =>{
-        console.log(getters)
+        // console.log(getters)
         let total = 0
         getters.cartProducts.forEach((n,i,v) =>{
             total += n.price * n.num
@@ -68,9 +68,14 @@ const getters = {
 const actions = {
     //添加到购物车操作
     addToCart({commit},product){
-        commit('add',{  //传递一个add的方法，携带参数id
-            id:product.id
-        })
+        console.log('--------')
+        console.log(product)
+        if(product.numb > 0){
+            commit('add',{  //传递一个add的方法，携带参数id
+                id:product.id
+            })
+        }
+        
     },
     // 清除购物车
     clearAllCart({commit}){
@@ -78,17 +83,20 @@ const actions = {
     },
     // 删除某个商品
     delProduct({commit},product){
-        commit('delect',{
-            id:product.id
-        })
+        if(product.num > 0){
+            commit('delect',{
+                id:product.id
+            })
+        }
     }
 };
 
 //mutation
 const mutations = {
     //添加到购物车操作
-    add(state,{id}){  //解构id 你可以 测试id 和 {id}的区别        
+    add(state,{id}){       
         let record = state.added.find(n=>n.id == id); 
+        // 查看是否存在
         if(!record){
             state.added.push({
                 id,
@@ -97,23 +105,41 @@ const mutations = {
         }else {
             record.num++
         }
-        // console.log(id,record,state.added)
+        // console.log(0)
+        // console.log(state.shop_list,{id})
+        state.shop_list.find(n =>n.id == id).numb--
+
     },
     // 清除购物车
-    clearAll(state){
-        state.added=[]
+    clearAll(state){ 
         console.log('清除购物车')
+        // console.log(state.added)
+        // console.log(state.shop_list)
+        state.shop_list.forEach(n=>{
+            state.added.forEach(i=>{
+                if(n.id == i.id){
+                    n.numb +=i.num
+                }
+            })
+        })
+        state.added=[]
     },
     // 删除某个商品
     delect(state,product){
-        // console.log(state.added)
-        // console.log(product)
-        state.added.forEach((n,i)=>{
-            if(n.id == product.id){
-                //找到index的下标值
-                state.added.splice(i,1)
-            }
-        })
+        // 购物车列表减1
+        state.added.find(n =>n.id == product.id).num--
+        // 商品列表加1
+        state.shop_list.find(n =>n.id == product.id).numb++
+        // 当购物车的数量为0时清除
+        if(state.added.find(n =>n.id == product.id).num == 0){
+            state.added.forEach((n,i)=>{
+                if(n.id == product.id){
+                    // console.log(state.added.num)
+                    //找到index的下标值
+                    state.added.splice(i,1)
+                }
+            })
+        }
     }
 };
 

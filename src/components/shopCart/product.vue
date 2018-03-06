@@ -8,6 +8,7 @@
           <th>id</th>
           <th>名称</th>
           <th>价格</th>
+          <th>数量</th>
           <th>操作</th>
         </tr>
       </thead>
@@ -16,8 +17,9 @@
           <td>{{shop.id}}</td>
           <td>{{shop.name}}</td>
           <td>{{shop.price}}</td>
+          <td>{{shop.numb}}</td>
           <td>
-            <div @click='addToCart(shop)' class="btn btn-info">购物车</div>
+            <div :class="{color:shop.numb == 0}" @click='addToCart(shop)' class="btn btn-info">购物车</div>
           </td>
         </tr>
       </tbody>
@@ -36,7 +38,10 @@ export default {
     ...mapGetters(['shoplist'])
   },
   methods: {
-    ...mapActions(['addToCart'])
+    ...mapActions(['addToCart']),
+    adv(){
+      console.log('1111')
+    }
   }
 }
 </script>
@@ -57,5 +62,9 @@ export default {
 
   .item {
     flex: 1;
+  }
+  .color,.color:hover {
+    background: #d2233d;
+    border-color: #d2233d
   }
 </style>
