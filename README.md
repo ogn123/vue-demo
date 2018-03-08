@@ -1,6 +1,6 @@
 # vue
 
-> 一个练手vue的todo
+> 一个练手vue的小实例，指令，动画过渡，有关vuex的计数和购物车
 
 ## Build Setup
 
