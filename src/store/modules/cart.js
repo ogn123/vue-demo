@@ -30,8 +30,8 @@ const getters = {
     //     return state.shoplist
     // }
     // 商品展示
-    shoplist:state => state.shop_list,
-    //购物车的列表
+    // shoplist:state => state.shop_list,
+    // 购物车的列表
     cartProducts:state=>{
         return state.added.map(({id,num})=>{
             let product1 = state.shop_list.find(n=>n.id == id)

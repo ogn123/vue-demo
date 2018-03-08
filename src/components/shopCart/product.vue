@@ -34,8 +34,12 @@ export default {
           
       }
   },
+  created () {
+    this.shoplist = this.$store.state.cart.shop_list
+    // console.log(this.$store.state.cart.shop_list)
+  },
   computed: {
-    ...mapGetters(['shoplist'])
+    // ...mapGetters(['shoplist'])
   },
   methods: {
     ...mapActions(['addToCart']),
