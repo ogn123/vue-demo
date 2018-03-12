@@ -5,6 +5,7 @@
       <router-link to='/transitioner'>过渡动画</router-link>
       <router-link to='/counter'>vuex的计数</router-link>
       <router-link to="/shopcart">购物车demo</router-link>
+      <router-link to='/corrent'>通信</router-link>
     </div>
     <router-view/>
   </div>

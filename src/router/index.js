@@ -4,6 +4,7 @@ import vue from '@/components/vue'
 import transitioner from '@/components/transition'
 import counter from '@/components/counter/couter'
 import shopcart from '@/components/shop'
+import corrent from '@/components/parent'
 Vue.use(Router)
 
 export default new Router({
@@ -32,6 +33,11 @@ export default new Router({
       path: '/shopcart',
       name: 'shopcart',
       component: shopcart
+    },
+    {
+      path: '/corrent',
+      name: 'corrent',
+      component: corrent
     }
   ]
 })
